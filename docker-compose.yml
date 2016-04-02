@@ -1,0 +1,18 @@
+database:
+  image: izeni/postgresql
+  environment:
+    - DB_USER=osu
+    - DB_PASS=osu
+    - DB_NAME=osu
+backend:
+  build: .
+  command: bash /osu/server/django_devserver.sh
+  volumes:
+  - .:/osu
+  links:
+  - database
+  ports:
+  - "8000:8000"
+  environment:
+    DB_HOST: database
+    PYTHONUNBUFFERED: 1

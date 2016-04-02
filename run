@@ -1,0 +1,20 @@
+#!/bin/bash
+
+RETVAL=0
+
+case "$1" in
+    "")
+      echo Usage: $0 ***** <-TODO
+      RETVAL=1
+      ;;
+    shell)
+      docker exec -it osu_django_1 /bin/bash -c "python /osu/manage.py shell_plus"
+      ;;
+    test)
+      docker exec -it osu_django_1 /bin/bash -c "python /osu/manage.py test"
+      ;;
+    runserver)
+      docker exec -it osu_django_1 /bin/bash -c "python /osu/manage.py runserver 0.0.0.0:8080"
+esac
+
+exit $RETVAL

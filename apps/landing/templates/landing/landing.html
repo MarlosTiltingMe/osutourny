@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html ng-app="APP_NAME">
+<head>
+  <title>APP</title>
+  <base href="/"/>
+  {% include 'styles.html' %}
+</head>
+<body>
+  {%verbatim%}
+  <ng-view>
+    {%endverbatim%}
+  {% include 'scripts.html' %}
+</body>
+</html>
