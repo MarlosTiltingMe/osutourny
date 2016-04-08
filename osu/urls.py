@@ -12,6 +12,8 @@ from rest_framework.routers import DefaultRouter
 from apps.landing.views import LandingView
 from apps.accounts.views import UserViewSet
 from apps.chats.views import MessageViewSet
+from apps.accounts.views import CurrentUser
+from osu.views import IndexView
 
 admin.site.site_title = admin.site.index_title = "osu backend"
 admin.site.site_header = mark_safe('<img src="{img}" alt="{alt}"/>'.format(
@@ -22,6 +24,7 @@ admin.site.site_header = mark_safe('<img src="{img}" alt="{alt}"/>'.format(
 router = DefaultRouter()
 router.register(r'users', UserViewSet, base_name='users')
 router.register(r'messages', MessageViewSet, base_name='messages')
+router.register(r'current', CurrentUser, base_name='current')
 
 urlpatterns = [
     url(r'^favicon.ico$', RedirectView.as_view(
@@ -44,6 +47,7 @@ urlpatterns = [
         ResetPassword.as_view(), name='reset-request'),
     url(r'validate/(?P<validation_key>[a-z0-9\-]+)/$',
         ValidateUserView.as_view(), name='user-validation'),
+    url(r'^.*$', IndexView.as_view(), name='index'),
 ]
 
 if settings.DEBUG:

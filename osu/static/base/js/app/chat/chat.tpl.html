@@ -1,0 +1,16 @@
+<div ng-init="init()">
+
+<div class="container">
+  <div class="chat">
+    <div ng-repeat="message in messages.results">
+      <p>{{map(message.author)}}</p>
+      <p>{{message.body}}</p>
+      <hr>
+    </div>
+  </div>
+  <input type="text" ng-model="body" name="body" placeholder="Message.."
+  onkeydown = "if (event.keyCode == 13)
+               document.getElementById('send').click()">
+  <button id="send" ng-click="post(body)">Send</button>
+</div>
+</div>

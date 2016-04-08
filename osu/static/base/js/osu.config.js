@@ -1,4 +1,4 @@
-Intern.config(config);
+Osu.config(config);
 
 function config($locationProvider) {
   $locationProvider.html5Mode(true);

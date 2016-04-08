@@ -1,7 +1,14 @@
-Intern.controller('AuthController', AuthController);
+Osu.controller('AuthController', AuthController);
 AuthController.inject = ['$cookies'];
 
 function AuthController($scope, $http, $cookies, AuthService) {
+
+
+  function getToken() {
+    return $cookies.get('token');
+  }
+
+  $http.defaults.headers.common['Authorization'] = 'Token ' + getToken();
 
   $scope.init = function() {
     currentUser();
@@ -25,15 +32,13 @@ function AuthController($scope, $http, $cookies, AuthService) {
   }
 
   function currentUser() {
-    $http.get('/api/test/').success(function(data) {
 
+    $http.get('/api/current/').success(function(data) {
       if(data.id) {
         $scope.userModel = data.username;
-        return data.username;
       } else {
         $scope.userModel = 'Anon';
       }
-
     });
   }
 }

@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html ng-app="APP_NAME">
-<head>
-  <title>APP</title>
-  <base href="/"/>
-  {% include 'styles.html' %}
-</head>
-<body>
-  {%verbatim%}
-  <ng-view>
-    {%endverbatim%}
-  {% include 'scripts.html' %}
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+    <p class="lead">Select an area of this site to visit.</p>
+    <p>{% for link in links %}
+        <a class="btn btn-primary btn-lg" href="{{ link.url }}" role="button">{{ link.name }} &raquo;</a>
+    {% endfor %}</p>
+{% endblock content %}
